@@ -1,0 +1,6 @@
+# Motor de conversión del inbox. Ver README.md de esta carpeta.
+# markitdown arrastra python-pptx, mammoth, pdfminer.six y beautifulsoup4.
+markitdown[pdf,docx,pptx,xlsx]>=0.1.6
+
+# Uso directo en a-markdown.py para el muestreo de hojas de cálculo.
+openpyxl>=3.1

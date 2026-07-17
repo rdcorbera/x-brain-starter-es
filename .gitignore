@@ -1,0 +1,6 @@
+# Entorno del conversor de insumos (se recrea con requirements.txt)
+kernel/scripts/.venv/
+__pycache__/
+
+# Ruido del sistema
+.DS_Store
