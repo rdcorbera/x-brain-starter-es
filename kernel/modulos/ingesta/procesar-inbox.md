@@ -2,7 +2,12 @@
 
 El Bibliotecario, modo ingesta. Procesar TODO lo que haya en `inbox/` (excepto README.md). Principio rector: **integrar, no solo archivar** — una fuente nueva puede tocar muchas páginas existentes.
 
-## 1. Clasificar
+## 0. Regla de formatos (eficiencia de tokens)
+
+La ingesta debe ser eficiente en tokens: **solo se leen e ingieren directamente `.md` (markdown), `.txt` (notas) y `.vtt` (transcripciones)**. Para todo lo demás:
+
+- **Convertible** (`.pptx .docx .xlsx .pdf .drawio .html .yaml`) → se transforma PRIMERO a markdown con `kernel/scripts/a-markdown.py` (paso 2.5) y se ingesta el `.md` resultante. El original jamás se abre ni se interpreta: leerlo quema miles de tokens y abre la puerta a inventar.
+- **No convertible** (cualquier otra extensión: imágenes, audio, video, `.zip`, binarios legacy `.doc/.ppt/.xls`, formatos desconocidos) → **no se intenta ingestar**. Se deja en `inbox/` y se informa al usuario al final: qué archivo es, por qué no se pudo, y qué haría falta (ej. exportarlo a un formato moderno, pasarle OCR, pegar el contenido como texto). Nunca "deducir" el contenido de un archivo que no se puede leer.
 
 Determinar qué es cada archivo (transcripción, documento recibido, nota rápida, diagrama, correo) y a qué proyecto o área pertenece. Si es ambiguo, preguntar — nunca adivinar el proyecto.
 
@@ -22,9 +27,9 @@ Registrar el archivo en `raw/manifiesto.md` (agregar fila al final de la tabla):
 
 Los archivos de `raw/` NUNCA se editan ni se borran — son la fuente de verdad que el wiki cita, y junto con el manifiesto permiten reconstruir el cerebro con `/x-reconstruir`.
 
-## 2.5 Normalizar a markdown (si el original es binario)
+## 2.5 Normalizar a markdown (si el original no es `.md`/`.txt`/`.vtt`)
 
-`.pptx .docx .xlsx .pdf .drawio .html .yaml` **no se abren ni se interpretan directamente** — se convierten:
+Aplicando la Regla de formatos (paso 0): `.pptx .docx .xlsx .pdf .drawio .html .yaml` **no se abren ni se interpretan directamente** — se convierten:
 
 ```bash
 python3 kernel/scripts/a-markdown.py raw/<archivo> --out <cerebro/01-proyectos/<proyecto>/00-insumos/> --origen /raw/<archivo>
@@ -44,11 +49,11 @@ El `.md` derivado es un insumo más: sigue al paso 3 y alimenta al wiki como cua
 
 Todo lo que se crea vive en `cerebro/`. Plantillas base en `kernel/esquema/plantillas/`; tipos propios en `plugins/plantillas/` (catálogo vigente: `cerebro/ESQUEMA.md`).
 
-**Transcripción de reunión** → nota `Reunion` (plantilla `reunion.md`) en `01-reuniones/` del proyecto, nombre `YYYY-MM-DD-tema.md`, con Citation al raw (`/raw/...`). Extraer: resumen, decisiones, pendientes por persona, preguntas abiertas. Redactar autocontenido.
+**Transcripción de reunión (`.vtt` o texto)** → nota `Reunion` (plantilla `reunion.md`) en `01-reuniones/` del proyecto, nombre `YYYY-MM-DD-tema.md`, con Citation al raw (`/raw/...`). **Regla para `.vtt`:** antes de integrar, elaborar un **resumen extenso y detallado** de la transcripción que capture: los participantes, los temas tratados, los acuerdos alcanzados, las preguntas surgidas, y todo lo relevante para una reunión de trabajo (compromisos con fecha, decisiones, riesgos mencionados, datos nuevos). Ese resumen es el cuerpo de la nota `Reunion` — la transcripción cruda no se copia al wiki, se cita. Redactar autocontenido: que se entienda sin abrir el `.vtt`.
 
 **Documento recibido u otro insumo** → `.md` convertido en `00-insumos/` del proyecto (o en la carpeta de `cerebro/03-recursos/` correspondiente si es transversal) + entrada descriptiva en el `index.md` del alcance + dudas nuevas como Preguntas.
 
-**Nota rápida / correo** → convertir al tipo OKF correspondiente o anexar a un documento existente.
+**Nota rápida / correo** → convertir al tipo OKF correspondiente o anexar a un documento existente. **Regla para correos:** los nombres que aparecen en las cabeceras `To`, `From` y `CC` **no se registran como Personas** por el solo hecho de estar ahí — una lista de distribución extensa no es conocimiento. Solo se crea o actualiza una ficha `Persona` si alguien es relevante en la conversación (toma un compromiso, decide algo, es la referencia de un tema, o el usuario interactúa con esa persona regularmente).
 
 ## 4. Integrar al wiki (el paso que compone)
 
