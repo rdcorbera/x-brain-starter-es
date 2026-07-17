@@ -2,7 +2,7 @@
 """Convierte un insumo binario a markdown para que un LLM lo lea sin quemar tokens.
 
 Determinista y sin modelo: el binario nunca entra en contexto. Se invoca desde
-/x-procesar-inbox (paso 2.5) y deja un .md que cita al original crudo.
+/x-procesar-inbox (paso 4) y deja un .md que cita al original crudo.
 
     python3 a-markdown.py <archivo> [--out DIR] [--filas N] [--origen RUTA] [--stdout]
 

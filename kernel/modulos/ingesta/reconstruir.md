@@ -21,7 +21,7 @@ Por cada fuente, en orden:
 1. **No moverla ni renombrarla** — ya está en su lugar definitivo.
 2. Si es binaria, convertirla: `python3 kernel/scripts/a-markdown.py raw/<archivo> --out <destino en cerebro/> --origen /raw/<archivo>` y leer el `.md` resultante.
 3. Si el destino es un proyecto que aún no existe, crearlo mínimo (CONTEXT.md con TODOs, `index.md`, `log.md`, subcarpetas estándar) — sin entrevista; se completa después con `/x-nueva-iniciativa` o a mano.
-4. Aplicar los pasos 3 y 4 de `kernel/modulos/ingesta/procesar-inbox.md` (transformar según tipo + integrar al wiki, con detección de contradicciones).
+4. Aplicar los pasos 5 y 6 de `kernel/modulos/ingesta/procesar-inbox.md` (transformar según tipo + integrar al wiki, con detección de contradicciones), respetando la Regla de formatos de su paso 1.
 5. Registrar en el manifiesto las páginas generadas (o crear la fila si no existía).
 
 Procesar por lotes (ej. por proyecto o por mes) mostrando avance; en cerebros grandes, ofrecer pausar entre lotes.
