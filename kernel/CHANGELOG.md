@@ -2,6 +2,14 @@
 
 Historial de versiones del sistema. `/x-actualizar-sistema` muestra las entradas nuevas al actualizar; si una versión requiere pasos de migración, se listan en su sección **Migración**.
 
+## 1.1.0 — 2026-07-17
+
+Lineamientos de ingesta reforzados en `/x-procesar-inbox`:
+
+- **Regla de formatos explícita**: solo se leen e ingieren directamente `.md`, `.txt` y `.vtt`; los formatos convertibles pasan primero por `a-markdown.py`, y los no convertibles se reportan al usuario sin intentar ingestarlos (eficiencia de tokens, cero invención).
+- **Transcripciones `.vtt`**: antes de integrar se elabora un resumen extenso y detallado — participantes, temas, acuerdos, preguntas y lo relevante de la reunión — que es el cuerpo de la nota `Reunion`; la transcripción cruda se cita, no se copia.
+- **Correos**: los nombres de `To`/`From`/`CC` no generan fichas `Persona` por sí solos; solo se registra a quien es relevante en la conversación.
+
 ## 1.0.0 — 2026-07-16
 
 Primera versión de X-Brain, evolución de [second-brain-starter-es](https://github.com/rdcorbera/second-brain-starter-es). Misma filosofía (LLM Wiki + PARA + OKF v0.1), nueva arquitectura:
