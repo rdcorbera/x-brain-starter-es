@@ -133,6 +133,8 @@ Ten a mano la documentación que dispara el proyecto (brief, requerimientos, pro
 
 No hace falta nombrar prolijo lo que sueltas en el inbox — el Bibliotecario clasifica y archiva cada original en `raw/` como `YYYY-MM-DD-descripcion-tiny_uuid.ext`, registrado en `raw/manifiesto.md`. Solo evita nombres como `notas3.txt`.
 
+Lo que sí ahorra preguntas es **agrupar por destino**: si sueltas una carpeta con el nombre de un proyecto o de un área (`inbox/migracion-erp/`), todo lo que esté adentro se atribuye ahí sin que te pregunte archivo por archivo. El nombre no tiene que ser exacto — encuentra a `2026-q3-migracion-erp/` sin el prefijo de periodo. Y si la carpeta no corresponde a nada existente, te pregunta antes de tocar nada, ofreciéndote crear el proyecto con `/x-nueva-iniciativa`.
+
 #### Qué formatos acepta el inbox
 
 Texto plano, y estos adjuntos, que se convierten solos a markdown (requiere el Paso 2):
