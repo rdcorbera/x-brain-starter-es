@@ -13,6 +13,16 @@ La ingesta debe ser eficiente en tokens: **solo se leen e ingieren directamente 
 
 Determinar qué es cada archivo (transcripción, documento recibido, nota rápida, diagrama, correo) y a qué proyecto o área pertenece. Si es ambiguo, preguntar — nunca adivinar el proyecto.
 
+**Las carpetas del inbox son señal de destino.** Si el inbox trae una carpeta cuyo nombre corresponde a un proyecto de `cerebro/01-proyectos/`, un área de `cerebro/02-areas/` o una carpeta de `cerebro/03-recursos/`, **todo su contenido pertenece a ese destino**: el usuario ya lo clasificó al agruparlo, no se pregunta archivo por archivo.
+
+- **Matching tolerante, no exacto.** Comparar en kebab-case, minúsculas y sin acentos, y aceptar tanto el nombre completo de la carpeta del cerebro como el nombre sin su prefijo de periodo — los proyectos se llaman `<periodo>-nombre/`, así que `inbox/migracion-erp/` corresponde a `01-proyectos/2026-q3-migracion-erp/`.
+- **Recursivo.** La carpeta de primer nivel decide el destino de todo lo que cuelga de ella, a cualquier profundidad. Las subcarpetas internas son organización del usuario: no re-enrutan nada.
+- **La carpeta decide el destino; el contenido sigue decidiendo el tipo** (`Reunion`, `Insumo`, `Diagrama`...) y su ubicación dentro del proyecto (`01-reuniones/`, `00-insumos/`, ...) según el paso 5.
+- **Varios candidatos → preguntar.** Si el nombre corresponde a más de un proyecto o área, listar los candidatos y preguntar; nunca elegir por el usuario.
+- **Sin correspondencia → preguntar y ofrecer crear.** Mostrar la carpeta y ofrecer: (a) crear el proyecto con `/x-nueva-iniciativa`, (b) asignarla a un proyecto o área existente, (c) clasificar por contenido, archivo por archivo. Nunca crear el proyecto por cuenta propia ni dispersar en silencio material que el usuario agrupó a propósito.
+- **Si el contenido contradice a la carpeta** (ej. el acta de otra iniciativa dentro de la carpeta), no forzar la carpeta ni sobrescribir en silencio: señalarlo al usuario, igual que las contradicciones del paso 6.
+- **Los archivos sueltos en la raíz del inbox** se clasifican por contenido, como siempre.
+
 ## 3. Preservar el original (capa cruda inmutable, en un solo lugar)
 
 Antes de transformar: mover el original de `inbox/` a **`raw/`** con nombre:
@@ -24,6 +34,8 @@ YYYY-MM-DD-descripcion-tiny_uuid.ext
 - **Fecha**: la del contenido si se conoce (ej. la fecha de la reunión o la del prefijo del nombre original); si no, la de hoy.
 - **Descripción**: kebab-case, corta y autocontenida.
 - **tiny_uuid**: sufijo único de 6 caracteres hex para evitar colisiones. Generarlo con `python3 -c "import uuid; print(uuid.uuid4().hex[:6])"` (en Windows: `python`); si Python no está disponible, elegir 6 hex al azar y verificar que el nombre no exista ya en `raw/`.
+
+**`raw/` es plano**: las carpetas del inbox no se replican ahí. Esa información no se pierde — vive en la columna "Destino" del manifiesto, que es exactamente para eso.
 
 Registrar el archivo en `raw/manifiesto.md` (agregar fila al final de la tabla): archivo en raw, nombre original, destino (proyecto o área), y páginas generadas (se completa en el paso 7).
 
@@ -73,8 +85,8 @@ Por cada dato extraído, actualizar las páginas afectadas:
 - Regenerar `cerebro/PREGUNTAS-ABIERTAS.md` (bloqueantes primero, luego antigüedad; enlace + responsable + días abierta).
 - Regenerar `cerebro/02-areas/personas/ORGANIGRAMA.md` si cambió alguna ficha Persona.
 - Actualizar los `index.md` tocados. Loguear en el `log.md` de cada proyecto tocado y en `cerebro/log.md` global.
-- El inbox queda vacío: todo procesado tiene su original en `raw/` y su línea en el manifiesto.
+- El inbox queda vacío: todo procesado tiene su original en `raw/` y su línea en el manifiesto. Borrar las carpetas que quedaron vacías; si adentro sobrevivieron archivos no convertibles (paso 1), la carpeta se conserva con ellos y se reporta.
 
 ## 8. Reportar
 
-Resumen final: N fuentes procesadas, páginas creadas/actualizadas, preguntas nuevas/cerradas, contradicciones encontradas y su resolución, y lo que requiere decisión del usuario.
+Resumen final: N fuentes procesadas (y a qué destino fue cada carpeta del inbox), páginas creadas/actualizadas, preguntas nuevas/cerradas, contradicciones encontradas y su resolución, y lo que requiere decisión del usuario.
