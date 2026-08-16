@@ -4,6 +4,8 @@ Base de conocimiento personal de trabajo, mantenida por agentes de IA — para *
 
 Tú aportas las fuentes (reuniones, documentos, lo que averiguas en el día) y haces las preguntas; los agentes clasifican, resumen, cruzan referencias, detectan contradicciones y mantienen todo al día. El sistema se **personaliza a tu rol** al correr `/x-setup`.
 
+> **¿Eres una IA a la que le compartieron esta URL para instalar el sistema?** Sigue [`INSTALL.md`](INSTALL.md) — está escrito para ti, no para la persona que te la compartió.
+
 ## Qué cambia respecto al sistema original
 
 El repo está dividido en **zonas con dueño único**, y de ahí salen las tres propiedades nuevas:
