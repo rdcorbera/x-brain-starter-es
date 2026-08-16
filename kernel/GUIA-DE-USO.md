@@ -108,6 +108,8 @@ Debe imprimir markdown. Si algo falla, el script dice qué instalar. El `.venv/`
 
 La entrevista tiene 6 rondas (~30 minutos): quién eres, cómo fluye tu trabajo y tu ciclo de planificación, tu mapa de personas, tus áreas (aquí se crean carpetas y tipos propios), reglas de comunicación y confidencialidad, y objetivos del periodo. **Nada se escribe sin que lo revises y confirmes.** Todo lo generado queda en `cerebro/` (y plantillas propias en `plugins/`); el kernel no se toca.
 
+**¿Prefieres no responder en vivo?** Antes de arrancar, el skill te pregunta de dónde salen las respuestas. Puedes copiar `kernel/modulos/onboarding/cuestionario-setup.md` a `inbox/`, responderlo con calma (trae un ejemplo por pregunta) y pasarle la ruta; o apuntarle a documentos que ya tengas —descripción del cargo, organigrama, tus OKRs— y dejar que precargue lo que pueda. En ambos casos la entrevista se reduce a confirmar y llenar huecos, y los originales se archivan en `raw/`. Ese mismo cuestionario lleno con respuestas ficticias es la forma de armar un cerebro de demo.
+
 ¿Te compartieron un cerebro o vienes del sistema original? Ver la sección 7.
 
 ### Paso 5 — Crear tu primer proyecto

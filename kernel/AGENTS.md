@@ -76,7 +76,7 @@ x-brain/
 │   │   ├── okf.md                ← especificación OKF + catálogo base de tipos
 │   │   └── plantillas/           ← plantilla base por cada tipo
 │   ├── modulos/                  ← la lógica de los skills, por módulo:
-│   │   ├── onboarding/           ← setup, actualizar-sistema
+│   │   ├── onboarding/           ← setup (+ cuestionario-setup), actualizar-sistema
 │   │   ├── ingesta/              ← procesar-inbox, nueva-iniciativa, reconstruir
 │   │   ├── consulta/             ← consultar, briefing-diario, preparar-reunion
 │   │   ├── registro/             ← decision, diagrama

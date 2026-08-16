@@ -2,6 +2,21 @@
 
 Historial de versiones del sistema. `/x-actualizar-sistema` muestra las entradas nuevas al actualizar; si una versión requiere pasos de migración, se listan en su sección **Migración**.
 
+## 1.3.0 — 2026-08-16
+
+La entrevista de `/x-setup` se vuelve un guion propio, con ejemplos, y deja de exigir responder en vivo:
+
+- **Cuestionario como archivo aparte**: las 6 rondas viven ahora en `kernel/modulos/onboarding/cuestionario-setup.md`. `setup.md` define el proceso; el cuestionario define qué se pregunta. Editar las preguntas ya no obliga a tocar la lógica del skill.
+- **Cada pregunta con ejemplo y propósito**: toda pregunta trae un *Ejemplo* de respuesta real —para que el usuario entienda qué nivel de detalle se espera— y cada ronda un bloque *Para qué sirve* que explica al agente qué decisión del sistema depende de esa respuesta. Los ejemplos son para desatascar, nunca para sugerir la respuesta.
+- **Origen de las respuestas (Fase 1 nueva)**: antes de preguntar nada, el skill ofrece tres vías — un cuestionario ya respondido, documentos que el usuario ya tenga (descripción del cargo, organigrama, OKRs), o la entrevista en vivo. Con material, la entrevista se reduce a confirmar y llenar huecos, y los originales se archivan en `raw/` con su fila en el manifiesto, dejando el setup reconstruible con `/x-reconstruir`.
+- **Sin inferencias**: lo que el material no diga se pregunta o queda como hueco. Un CV dice el rol, no dice qué energiza a la persona ni cómo quiere que le hablen.
+- **Cerebros de demo**: llenar una copia del cuestionario con respuestas ficticias es ahora la vía soportada para armar brains de prueba.
+- **"Qué te energiza" reformulada**: la pregunta confundía. Ahora es "de todo eso, ¿qué parte te da energía y cuál sientes más como trámite?", con su ejemplo y la explicación de que calibra el énfasis de `/x-briefing-diario` y `/x-actualizacion-semanal`.
+
+### Migración
+
+Ninguna. `/x-setup` se sigue invocando igual y los cerebros ya generados no se ven afectados.
+
 ## 1.2.0 — 2026-07-21
 
 Las carpetas del inbox ahora dicen a dónde va su contenido en `/x-procesar-inbox`:
