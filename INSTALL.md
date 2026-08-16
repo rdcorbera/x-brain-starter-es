@@ -72,6 +72,7 @@ Este archivo termina aquí: la personalización real la hace el skill `/x-setup`
 
 - Si estás corriendo **dentro de Claude Code o VS Code + Copilot**, ya posicionado en la carpeta clonada, y los comandos `/x-*` están disponibles: dile al humano que ya puede correr `/x-setup`, y ofrécete a correrlo tú mismo en esta misma sesión si te lo pide.
 - Si esta conversación es una sesión distinta de la que va a operar el brain (lo más común: te compartieron el repo en un chat de bootstrap y el humano va a abrir Claude Code o Copilot por su cuenta después): dile explícitamente que abra el editor en la carpeta `<carpeta-destino>` y corra `/x-setup` ahí. No lo intentes tú si no vas a seguir siendo la sesión que opera el repo.
+- **Si la herramienta es VS Code + Copilot**: los skills no se detectan en una ventana ya abierta antes del clonado, ni tampoco si VS Code abrió la carpeta por primera vez con la extensión de Copilot ya cargada. Dile al humano que cierre VS Code por completo y lo vuelva a abrir posicionado en `<carpeta-destino>` — recién ahí `/x-setup` va a aparecer al escribir `/` en Copilot Chat. Este reinicio va antes de correr `/x-setup`, no después.
 
 No corras `/x-setup` a ciegas ni inventes respuestas de la entrevista en su nombre: es una entrevista guiada que el skill conduce con el humano presente.
 
