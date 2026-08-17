@@ -28,6 +28,7 @@ Procesar por lotes (ej. por proyecto o por mes) mostrando avance; en cerebros gr
 
 ## 3. Cerrar
 
-- Regenerar `cerebro/PREGUNTAS-ABIERTAS.md`, `cerebro/02-areas/personas/ORGANIGRAMA.md` y todos los `index.md` tocados.
+- Regenerar `cerebro/PREGUNTAS-ABIERTAS.md`, `cerebro/PENDIENTES.md`, `cerebro/02-areas/personas/ORGANIGRAMA.md` y todos los `index.md` tocados.
+- Los `PLAN.md` se reconstruyen igual que el resto: las tareas que las fuentes acuerdan salen del paso 6 de `/x-procesar-inbox`. Lo que el plan tenía y no está en ninguna fuente (tareas agregadas a mano, reprogramaciones acordadas de palabra) **no se puede recrear** — avisarlo y ofrecer `/x-plan` para completarlos.
 - Loguear en `cerebro/log.md`: `**Rebuild**: Cerebro reconstruido desde raw/ — N fuentes, N proyectos, N páginas.`
 - Reportar: fuentes procesadas, proyectos creados, páginas generadas, ambigüedades resueltas por el usuario, y lo que quedó con TODOs.

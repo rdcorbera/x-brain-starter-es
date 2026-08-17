@@ -52,6 +52,7 @@ Las plantillas base están en `kernel/esquema/plantillas/`; las de tipos propios
 
 - **Idioma: español** por defecto (configurable en `cerebro/PERFIL.md`). Todo el contenido se escribe en el idioma configurado.
 - **Nunca fabricar.** Si falta información, se crea un documento `Pregunta` — jamás se inventa una respuesta ni se rellena con supuestos.
+- **Una sola fuente por pendiente.** Lo que hace falta para entregar un proyecto vive en su `PLAN.md`, lo haga el usuario o un tercero; las tablas "Pendientes conmigo" de las fichas `Persona` son espejos con enlace a la fila, nunca listas independientes. Lo que alguien debe pero no es trabajo de proyecto vive solo en su ficha. Lo que no se sabe es una `Pregunta`, no una tarea. Y toda tarea rastrea a la definición de "entregado" del `CONTEXT.md`: si no aporta a eso, sobra.
 - **Nombres de archivo:** kebab-case, descriptivos y autocontenidos. Reuniones: `YYYY-MM-DD-tema-corto.md`. Decisiones: `dec-NNN-tema-corto.md`. Raws: `YYYY-MM-DD-descripcion-tiny_uuid.ext`.
 - **Diagramas siempre como texto** (Mermaid preferido, PlantUML aceptado) dentro de markdown. Nunca solo imágenes.
 - **Mostrar antes de escribir.** Ante cambios masivos o edición de documentos existentes fuera del alcance del skill en ejecución, mostrar un resumen y pedir confirmación.
@@ -79,7 +80,7 @@ x-brain/
 │   │   ├── onboarding/           ← setup (+ cuestionario-setup), actualizar-sistema
 │   │   ├── ingesta/              ← procesar-inbox, nueva-iniciativa, reconstruir
 │   │   ├── consulta/             ← consultar, briefing-diario, preparar-reunion
-│   │   ├── registro/             ← decision, diagrama
+│   │   ├── registro/             ← decision, diagrama, plan
 │   │   ├── mantenimiento/        ← actualizacion-semanal, curar, cierre-periodo
 │   │   └── extension/            ← crear-skill, crear-plantilla
 │   └── scripts/                  ← a-markdown.py: insumos binarios → markdown (cero tokens)
@@ -94,9 +95,11 @@ x-brain/
     ├── index.md · log.md         ← índice raíz y log global del bundle
     ├── GOALS.md                  ← objetivos del periodo (3 bloques)
     ├── PREGUNTAS-ABIERTAS.md     ← índice global de preguntas (autogenerado)
+    ├── PENDIENTES.md             ← índice global de tareas y pendientes (autogenerado)
     ├── 01-proyectos/             ← una carpeta por proyecto u objetivo activo
     │   └── <periodo-nombre>/
     │       ├── CONTEXT.md        ← qué es, estado, personas (type: Iniciativa)
+    │       ├── PLAN.md           ← tareas por fase hasta "entregado" (type: Plan)
     │       ├── index.md · log.md
     │       ├── 00-insumos/       ← insumos convertidos a .md (los originales van a /raw/)
     │       ├── 01-reuniones/     ← notas procesadas (type: Reunion)
@@ -130,6 +133,7 @@ Todos se invocan con el prefijo `x-`. La lógica de cada uno vive en `kernel/mod
 | `/x-preparar-reunion` | consulta | Antes de reunirte con alguien | Sonnet |
 | `/x-decision` | registro | Registrar o deliberar una decisión importante | Opus |
 | `/x-diagrama` | registro | Generar/actualizar diagramas (flujos, procesos, secuencias) | Opus |
+| `/x-plan` | registro | Crear, re-planificar o reportar el plan de tareas de un proyecto | Sonnet |
 | `/x-actualizacion-semanal` | mantenimiento | Una vez por semana | Sonnet |
 | `/x-curar` | mantenimiento | Mantenimiento a demanda (índices, enlaces, duplicados) | Sonnet |
 | `/x-cierre-periodo` | mantenimiento | Al cerrar el trimestre/ciclo de planificación | Sonnet |

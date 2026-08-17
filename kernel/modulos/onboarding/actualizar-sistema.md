@@ -33,6 +33,6 @@ git merge upstream/main
 
 1. Releer las entradas nuevas del CHANGELOG: si alguna versión trae sección **Migración**, aplicar sus pasos (o guiar al usuario) antes de dar por cerrada la actualización.
 2. Si cambió `kernel/scripts/requirements.txt`, recordar recrear el venv del conversor.
-3. Actualizar la versión de kernel anotada en `cerebro/ESQUEMA.md`.
+3. Actualizar la versión de kernel anotada en `cerebro/ESQUEMA.md`. **Solo ese campo:** si la versión nueva agregó tipos al catálogo base, la tabla de tipos de `cerebro/ESQUEMA.md` la actualiza `/x-curar` (punto 8 de su lint estructural) — ofrecer correrlo, no escribirla acá. `cerebro/` es zona del usuario y este skill se limita al metadato de versión.
 4. Loguear en `cerebro/log.md`: `**Update**: Kernel actualizado <versión anterior> → <versión nueva>.`
 5. Reportar: versión nueva, cambios relevantes para el usuario, migraciones aplicadas.

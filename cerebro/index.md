@@ -8,6 +8,7 @@ okf_version: "0.1"
 * [ESQUEMA.md](/ESQUEMA.md) - Esquema de datos: catálogo de tipos, estructura y convenciones de este cerebro.
 * [GOALS.md](/GOALS.md) - Objetivos del periodo: iniciativas, personales y de área.
 * [PREGUNTAS-ABIERTAS.md](/PREGUNTAS-ABIERTAS.md) - Índice global de preguntas sin resolver (autogenerado por /x-procesar-inbox y /x-curar).
+* [PENDIENTES.md](/PENDIENTES.md) - Índice global de tareas y pendientes: vencidos y bloqueados primero (autogenerado).
 * [log.md](/log.md) - Historia global de cambios del cerebro.
 
 # Secciones

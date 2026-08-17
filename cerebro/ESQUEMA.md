@@ -24,20 +24,21 @@
 
 | Carpeta | Semántica |
 |---|---|
-| `01-proyectos/` | Trabajo con fecha de fin: una carpeta por proyecto (`<periodo>-nombre/` con CONTEXT.md, insumos, reuniones, decisiones, preguntas...) |
+| `01-proyectos/` | Trabajo con fecha de fin: una carpeta por proyecto (`<periodo>-nombre/` con CONTEXT.md, PLAN.md, insumos, reuniones, decisiones, preguntas...) |
 | `02-areas/` | Responsabilidades continuas. Incluye `personas/` (fichas + ORGANIGRAMA.md) |
 | `03-recursos/` | Referencia: `sistemas-y-herramientas/`, `glosario/`, y lo que el rol necesite |
 | `04-archivo/` | Proyectos cerrados, por periodo, con sus retros |
 
-Archivos raíz: `PERFIL.md` (contexto del dueño), `GOALS.md` (objetivos del periodo), `PREGUNTAS-ABIERTAS.md` (índice global de dudas, autogenerado), `index.md`, `log.md`.
+Archivos raíz: `PERFIL.md` (contexto del dueño), `GOALS.md` (objetivos del periodo), `PREGUNTAS-ABIERTAS.md` (índice global de dudas, autogenerado), `PENDIENTES.md` (índice global de tareas y pendientes, autogenerado), `index.md`, `log.md`.
 
 ## Catálogo de tipos — base
 
-Los 11 tipos del kernel (especificación completa y plantillas: `kernel/esquema/okf.md` y `kernel/esquema/plantillas/` del sistema que hospeda):
+Los 12 tipos del kernel (especificación completa y plantillas: `kernel/esquema/okf.md` y `kernel/esquema/plantillas/` del sistema que hospeda):
 
 | Tipo | Qué es |
 |---|---|
 | `Iniciativa` | El CONTEXT.md de cada proyecto u objetivo con entidad propia |
+| `Plan` | El PLAN.md de cada proyecto: tareas por fase hasta "entregado", con responsable, estado y límite |
 | `Insumo` | Documento recibido convertido a markdown, con puntero a su original en `/raw/` |
 | `Reunion` | Nota procesada de una reunión |
 | `Decision` | Registro de una decisión: contexto, alternativas y consecuencias |
