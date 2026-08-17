@@ -20,6 +20,7 @@ Usar exactamente estos valores en `type`. Cada tipo tiene su plantilla en `kerne
 | Tipo | Qué es | Plantilla |
 |---|---|---|
 | `Iniciativa` | El CONTEXT.md de cada proyecto u objetivo con entidad propia | `contexto-iniciativa.md` |
+| `Plan` | El PLAN.md de cada proyecto: las tareas que llevan hasta "entregado", agrupadas por fase, con responsable, estado y fecha límite | `plan.md` |
 | `Insumo` | Documento recibido convertido a markdown, con puntero a su original en `/raw/`. Lo genera `a-markdown.py`; no se redacta a mano | `insumo.md` |
 | `Reunion` | Nota procesada de una reunión | `reunion.md` |
 | `Decision` | Registro de una decisión con su contexto, alternativas y consecuencias (inspirado en los ADR) | `decision.md` |

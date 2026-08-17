@@ -97,7 +97,7 @@ Debe imprimir markdown. Si algo falla, el script dice qué instalar. El `.venv/`
 
 ### Paso 3 — Activar los skills en tu herramienta
 
-- **Claude Code**: nada que hacer — los skills de `.claude/skills/` se detectan solos. Escribir `/x-` debe listar los 15.
+- **Claude Code**: nada que hacer — los skills de `.claude/skills/` se detectan solos. Escribir `/x-` debe listar los 16.
 - **VS Code + Copilot**: activar el setting **Chat: Prompt Files** (`chat.promptFiles: true`), abrir Copilot Chat en modo **Agent** y verificar que `/x-setup` aparece al escribir `/`.
 
 ### Paso 4 — Correr el setup (aquí el sistema se vuelve TUYO)
@@ -130,7 +130,7 @@ Ten a mano la documentación que dispara el proyecto (brief, requerimientos, pro
 1. Soltar en inbox/ todo lo pendiente de ayer
    (transcripciones, documentos recibidos, notas sueltas)
 2. /x-procesar-inbox      ← clasifica, archiva en raw/, integra, detecta contradicciones
-3. /x-briefing-diario     ← repasa preguntas abiertas, registra lo averiguado
+3. /x-briefing-diario     ← repasa preguntas abiertas y pendientes vencidos
 ```
 
 No hace falta nombrar prolijo lo que sueltas en el inbox — el Bibliotecario clasifica y archiva cada original en `raw/` como `YYYY-MM-DD-descripcion-tiny_uuid.ext`, registrado en `raw/manifiesto.md`. Solo evita nombres como `notas3.txt`.
@@ -163,7 +163,8 @@ DESPUÉS:  soltar transcripción o notas en inbox/ → /x-procesar-inbox
 
 ```
 /x-decision   ← registrar o deliberar una decisión (valida contra decisiones previas y lineamientos)
-/x-diagrama   ← flujos, procesos, secuencias, organización
+/x-diagrama   ← flujos, procesos, secuencias, organización, cronograma
+/x-plan       ← crear o re-planificar el plan de tareas de un proyecto, o ver cuánto falta
 /x-consultar  ← preguntar cualquier cosa a la base ("¿qué decidimos sobre X y por qué?")
 ```
 
@@ -183,7 +184,7 @@ Puedes pedirle al agente que lo haga al final de cada `/x-procesar-inbox`.
 
 | Frecuencia | Comando | Qué hace |
 |---|---|---|
-| **Semanal** (ej. viernes) | `/x-actualizacion-semanal` | Pulso, objetivos (3 bloques), estado por proyecto, pendientes vencidos |
+| **Semanal** (ej. viernes) | `/x-actualizacion-semanal` | Pulso, objetivos (3 bloques), avance de cada proyecto contra su plan, pendientes vencidos |
 | **Mensual** | `/x-curar` | Lint estructural (índices, enlaces, OKF, manifiesto) y de contenido (contradicciones, huérfanos, obsolescencia) |
 | **Por periodo** (según tu ciclo) | `/x-cierre-periodo` | Archiva proyectos extrayendo el conocimiento reutilizable, retro de objetivos, prepara GOALS.md |
 | **Cuando haya versión nueva** | `/x-actualizar-sistema` | Trae el kernel más reciente desde GitHub (merge limpio: tu contenido no se toca) |
@@ -202,6 +203,7 @@ Puedes pedirle al agente que lo haga al final de cada `/x-procesar-inbox`.
 | `/x-consultar` | Cualquier pregunta contra la base | Sonnet (Opus si es complejo) |
 | `/x-decision` | Al tomar o deliberar una decisión importante | **Opus** |
 | `/x-diagrama` | Al crear o actualizar diagramas | **Opus** |
+| `/x-plan` | Al armar el plan de un proyecto, re-planificar o ver cuánto falta | Sonnet |
 | `/x-actualizacion-semanal` | Una vez por semana | Sonnet |
 | `/x-curar` | Mensual o cuando algo se sienta desordenado | Sonnet |
 | `/x-cierre-periodo` | Al cerrar tu ciclo de planificación | Sonnet |
@@ -232,9 +234,10 @@ Las zonas hacen que el conocimiento viaje separado del sistema. Tres escenarios:
 2. **Nada se queda en el inbox más de un día.** El valor está en el conocimiento integrado, no en el material crudo acumulado.
 3. **Los originales no se tocan.** `raw/` es inmutable y completo; el wiki lo cita. Es tu seguro para reconstruir.
 4. **Lo que no sabes es una Pregunta, no un supuesto.** Nunca dejes que un agente (ni tú) rellene un hueco con una suposición sin registrarla.
-5. **El kernel no se edita.** Si un skill hace algo que no te sirve, créate uno propio con `/x-crear-skill` — editar `kernel/` rompe la actualización limpia.
-6. **Confidencialidad.** Nunca ingresar credenciales, secretos ni datos personales de terceros. Registra las restricciones de tu organización en el `/x-setup` para que los agentes las respeten.
-7. **Revisa antes de confirmar.** Los skills muestran los cambios antes de escribir — ese punto de control existe para usarse, especialmente las primeras semanas.
+5. **El plan es la fuente de lo pendiente.** Si una tarea del proyecto no está en su `PLAN.md`, para el sistema no existe: no la va a perseguir nadie. Lo que no es trabajo de proyecto vive en la ficha de la persona.
+6. **El kernel no se edita.** Si un skill hace algo que no te sirve, créate uno propio con `/x-crear-skill` — editar `kernel/` rompe la actualización limpia.
+7. **Confidencialidad.** Nunca ingresar credenciales, secretos ni datos personales de terceros. Registra las restricciones de tu organización en el `/x-setup` para que los agentes las respeten.
+8. **Revisa antes de confirmar.** Los skills muestran los cambios antes de escribir — ese punto de control existe para usarse, especialmente las primeras semanas.
 
 ---
 

@@ -2,6 +2,25 @@
 
 Historial de versiones del sistema. `/x-actualizar-sistema` muestra las entradas nuevas al actualizar; si una versión requiere pasos de migración, se listan en su sección **Migración**.
 
+## 1.4.0 — 2026-08-16
+
+El cerebro pasa de saber *qué no sabes* a saber *cuánto falta*. Hasta ahora rastreaba preguntas abiertas y pendientes sueltos de cada reunión, pero ningún proyecto tenía un plan contra el cual medirse: la actualización semanal preguntaba "¿qué cambió?" a mano abierta porque no había nada con qué comparar.
+
+- **Tipo nuevo `Plan`**: cada proyecto puede tener un `PLAN.md` en su raíz, junto al `CONTEXT.md`, con las tareas que llevan hasta "entregado" agrupadas por fase, cada una con responsable, estado, fecha límite y el enlace a la fuente de donde salió. Estados: `pendiente | en-progreso | bloqueada | hecha | descartada` — el mismo vocabulario que ya usaban `Iniciativa` y `Pregunta`. El catálogo base pasa de 11 a 12 tipos.
+- **Skill nuevo `/x-plan`**: crea el plan de un proyecto que no lo tiene (leyendo sus insumos, reuniones y decisiones), re-planifica en bloque cuando el proyecto cambia de rumbo, o reporta cuánto falta por fase, qué está vencido y qué está bloqueado. Es la vía para los proyectos que ya existían antes de esta versión.
+- **Índice global `cerebro/PENDIENTES.md`**: gemelo de `PREGUNTAS-ABIERTAS.md`, autogenerado, con las tareas de todos los proyectos —vencidas primero— más una sección "Sin proyecto" para los pendientes de fichas `Persona` que no son trabajo de proyecto. Un solo lugar que mirar cada mañana.
+- **El plan se mantiene solo con el uso**: `/x-procesar-inbox` convierte los acuerdos de cada reunión en filas del plan y cierra las que se entregaron; `/x-briefing-diario` interroga por lo vencido y lo bloqueado junto con las preguntas abiertas; `/x-actualizacion-semanal` hace el pulso de cada proyecto contra su plan en vez de contra la memoria; `/x-curar` audita que los planes no se estén podriendo; `/x-cierre-periodo` migra las tareas sin terminar y arranca el retro comparando lo planificado con lo que pasó.
+- **Regla de fuente única**: lo que hace falta para entregar un proyecto vive en su `PLAN.md`, lo haga quien lo haga; las tablas "Pendientes conmigo" de las fichas `Persona` pasan a ser espejos con enlace a la fila, nunca listas independientes. Así `/x-preparar-reunion` cobra pendientes que no están vencidos en el papel y vigentes en la realidad.
+- **`fuente-de-verdad: cerebro | externa`**: si las tareas ya viven en Jira, Asana o un Excel del área, el plan se declara espejo, guarda solo la tajada del usuario con un puntero al tracker real, y ningún skill afirma progreso global. Evita que el cerebro se vuelva una segunda fuente de verdad que se desactualiza y miente.
+- **Dos preguntas nuevas en `/x-nueva-iniciativa`** (8 y 9): qué fechas o hitos ya están fijos, y dónde vive hoy el plan del proyecto. Se saltan sin insistir si el proyecto no da para un plan. Además, `/x-diagrama` gana la clase `cronograma`, que genera un `gantt` de Mermaid desde el plan.
+
+### Migración
+
+Los cerebros ya creados siguen funcionando sin cambios: **si un proyecto no tiene `PLAN.md`, cada skill se comporta exactamente como antes** y ofrece correr `/x-plan` una vez, sin insistir. Para ponerse al día:
+
+1. **Correr `/x-curar`.** Detecta que el catálogo de tipos de tu `cerebro/ESQUEMA.md` no tiene `Plan` y propone actualizar esa tabla, crea `cerebro/PENDIENTES.md` si falta, y agrega su línea a `cerebro/index.md`. Esta actualización va por `/x-curar` y no por `/x-actualizar-sistema` a propósito: `cerebro/` es tu zona y el kernel no escribe en ella.
+2. **Correr `/x-plan` en los proyectos activos** que quieras seguir con plan. No hace falta hacerlo en todos ni de una sola vez.
+
 ## 1.3.0 — 2026-08-16
 
 La entrevista de `/x-setup` se vuelve un guion propio, con ejemplos, y deja de exigir responder en vivo:

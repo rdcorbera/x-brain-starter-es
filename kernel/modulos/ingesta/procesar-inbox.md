@@ -72,21 +72,23 @@ Todo lo que se crea vive en `cerebro/`. Plantillas base en `kernel/esquema/plant
 ## 6. Integrar al wiki (el paso que compone)
 
 Por cada dato extraído, actualizar las páginas afectadas:
-- Pendientes → tabla "Pendientes conmigo" de cada ficha `Persona`.
-- Preguntas abiertas → documentos `Pregunta` en `05-preguntas/` del proyecto. Si la fuente RESPONDE una pregunta existente, cerrarla (estado, respuesta, cita).
+- **Acuerdos y compromisos de trabajo del proyecto → filas del `PLAN.md`.** Es el paso que mantiene el plan vivo: un plan que nadie cierra está muerto en dos semanas y miente. Por cada acuerdo con responsable (y fecha, si la hay): si ya existe la tarea, actualizarle el estado; si no, agregarla a la fase que corresponda con el id siguiente, y la nota de reunión como Origen. Si la fuente dice que algo se entregó, la tarea pasa a `hecha` — **sin borrar la fila**. Si el proyecto no tiene `PLAN.md`, seguir como hasta ahora (las tablas de reunión y ficha) y ofrecer `/x-plan` una vez al final, sin insistir.
+- Pendientes → tabla "Pendientes conmigo" de cada ficha `Persona`. **Si el pendiente es trabajo del proyecto, la fuente es la fila del `PLAN.md` y la ficha lo espeja con enlace a ella** — nunca dos listas independientes. Solo lo que no es trabajo de proyecto vive únicamente en la ficha.
+- Preguntas abiertas → documentos `Pregunta` en `05-preguntas/` del proyecto. Si la fuente RESPONDE una pregunta existente, cerrarla (estado, respuesta, cita). Si una pregunta bloquea una tarea, enlazarla desde su fila y dejarla `bloqueada`; al responderse, la tarea vuelve a `pendiente` o `en-progreso`.
 - Decisión relevante → proponer /x-decision (no crearlo solo).
 - Conocimiento permanente (lineamiento, dato de sistema, relación de reporte) → actualizar Lineamiento / ficha Sistema / ficha Persona.
 
-**Detección de contradicciones (obligatorio):** si algo de la fuente contradice una página existente (un lineamiento que cambió, un dato de sistema desactualizado, una decisión que ya no aplica), NO sobrescribir en silencio ni ignorar. Señalarlo al usuario: "La reunión dice X pero [página] dice Y — ¿cuál vale?". Al resolver, la página se actualiza dejando nota de supersesión: `> Hasta YYYY-MM-DD se creía X (fuente); superado por Y (fuente).`
+**Detección de contradicciones (obligatorio):** si algo de la fuente contradice una página existente (un lineamiento que cambió, un dato de sistema desactualizado, una decisión que ya no aplica, **una tarea que la reunión da por entregada pero el plan tiene `en-progreso`**), NO sobrescribir en silencio ni ignorar. Señalarlo al usuario: "La reunión dice X pero [página] dice Y — ¿cuál vale?". Al resolver, la página se actualiza dejando nota de supersesión: `> Hasta YYYY-MM-DD se creía X (fuente); superado por Y (fuente).`
 
 ## 7. Mantener el sistema
 
 - Completar la columna "Páginas generadas" de las filas nuevas de `raw/manifiesto.md`.
 - Regenerar `cerebro/PREGUNTAS-ABIERTAS.md` (bloqueantes primero, luego antigüedad; enlace + responsable + días abierta).
+- Regenerar `cerebro/PENDIENTES.md` si se tocó algún `PLAN.md`, y actualizar el `ultima-revision` de los planes tocados.
 - Regenerar `cerebro/02-areas/personas/ORGANIGRAMA.md` si cambió alguna ficha Persona.
 - Actualizar los `index.md` tocados. Loguear en el `log.md` de cada proyecto tocado y en `cerebro/log.md` global.
 - El inbox queda vacío: todo procesado tiene su original en `raw/` y su línea en el manifiesto. Borrar las carpetas que quedaron vacías; si adentro sobrevivieron archivos no convertibles (paso 1), la carpeta se conserva con ellos y se reporta.
 
 ## 8. Reportar
 
-Resumen final: N fuentes procesadas (y a qué destino fue cada carpeta del inbox), páginas creadas/actualizadas, preguntas nuevas/cerradas, contradicciones encontradas y su resolución, y lo que requiere decisión del usuario.
+Resumen final: N fuentes procesadas (y a qué destino fue cada carpeta del inbox), páginas creadas/actualizadas, preguntas nuevas/cerradas, **tareas abiertas y cerradas en los planes**, contradicciones encontradas y su resolución, y lo que requiere decisión del usuario.
